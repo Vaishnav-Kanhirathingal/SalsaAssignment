@@ -5,5 +5,5 @@
     "diamonds_earned": 34,
     "followers": 260,
     "following": 260,
-    "posts_base_url":"TODO"
+    "posts_base_url":"UserPosts.json"
 }
