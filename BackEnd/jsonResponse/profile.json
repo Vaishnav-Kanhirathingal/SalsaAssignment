@@ -1,0 +1,9 @@
+{
+    "user_name": "User name",
+    "user_full_name": "Full Name",
+    "profile_pic_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Profile/pup.jpg",
+    "diamonds_earned": 34,
+    "followers": 260,
+    "following": 260,
+    "posts_base_url":"TODO"
+}
