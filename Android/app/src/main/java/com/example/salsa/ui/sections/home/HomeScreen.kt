@@ -28,14 +28,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil3.compose.AsyncImage
-import coil3.size.Dimension
 import com.example.salsa.R
 import com.example.salsa.models.home.HomeFeed
 import com.example.salsa.ui.sections.MainViewModel
@@ -190,7 +191,26 @@ object HomeScreen {
                 .padding(all = 1.dp)
                 .background(color = SharedColors.SURFACE_CONTAINER.color),
             content = {
-                val (eyeRef, viewCountRef, creatorPhotoRef, creatorNameRef, diamondRef, diamondCountRef) = createRefs()
+                val (contentRef, eyeRef, viewCountRef, creatorPhotoRef, creatorNameRef, diamondRef, diamondCountRef) = createRefs()
+
+                AsyncImage(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .constrainAs(
+                            ref = contentRef,
+                            constrainBlock = {
+                                this.width = Dimension.fillToConstraints
+                                this.height = Dimension.fillToConstraints
+                                this.top.linkTo(parent.top)
+                                this.bottom.linkTo(parent.bottom)
+                                this.start.linkTo(parent.start)
+                                this.end.linkTo(parent.end)
+                            }
+                        ),
+                    model = homeFeed?.contentThumbnailUrl,
+                    contentScale = ContentScale.Crop,
+                    contentDescription = null
+                )
                 Icon(
                     modifier = Modifier.constrainAs(
                         ref = eyeRef,
@@ -221,15 +241,17 @@ object HomeScreen {
                 AsyncImage(
                     modifier = Modifier
                         .size(size = 18.dp)
+                        .clip(shape = CircleShape)
                         .constrainAs(
-                        ref = creatorPhotoRef,
-                        constrainBlock = {
-                            this.start.linkTo(parent.start, margin = 8.dp)
-                            this.top.linkTo(creatorNameRef.top)
-                            this.bottom.linkTo(diamondRef.bottom)
-                        }
-                    ),
+                            ref = creatorPhotoRef,
+                            constrainBlock = {
+                                this.start.linkTo(parent.start, margin = 8.dp)
+                                this.top.linkTo(creatorNameRef.top)
+                                this.bottom.linkTo(diamondCountRef.bottom)
+                            }
+                        ),
                     model = homeFeed?.creatorProfilePicUrl ?: "Loading",
+                    contentScale = ContentScale.Crop,
                     contentDescription = null
                 )
 
@@ -237,8 +259,8 @@ object HomeScreen {
                     modifier = Modifier.constrainAs(
                         ref = creatorNameRef,
                         constrainBlock = {
-                            this.bottom.linkTo(diamondRef.top, margin = 8.dp)
-                            this.start.linkTo(creatorPhotoRef.end, margin = 8.dp)
+                            this.bottom.linkTo(diamondRef.top)
+                            this.start.linkTo(creatorPhotoRef.end, margin = 6.dp)
                         }
                     ),
                     text = homeFeed?.creatorName ?: "Loading",
@@ -247,12 +269,12 @@ object HomeScreen {
                     fontWeight = FontWeight.Medium,
                     color = SharedColors.ON_SURFACE.color,
                 )
-                Icon(
+                Image(
                     modifier = Modifier.constrainAs(
                         ref = diamondRef,
                         constrainBlock = {
-                            this.bottom.linkTo(parent.bottom, margin = 12.dp)
-                            this.start.linkTo(creatorPhotoRef.start, margin = 8.dp)
+                            this.bottom.linkTo(parent.bottom, margin = 16.dp)
+                            this.start.linkTo(creatorPhotoRef.end, margin = 6.dp)
                         }
                     ),
                     painter = painterResource(id = R.drawable.profile_diamond),
