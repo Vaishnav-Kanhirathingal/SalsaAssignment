@@ -1,29 +1,29 @@
 [
     {
         "creator_name": "John",
-        "creator_profile_pic": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/hp.png",
-        "content_thmbnail_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/h1.png",
+        "creator_profile_pic_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/hp.png",
+        "content_thumbnail_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/h1.png",
         "view_count": 46,
         "diamond_count": 260
     },
     {
         "creator_name": "Jenny",
-        "creator_profile_pic": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/hp.png",
-        "content_thmbnail_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/h2.png",
+        "creator_profile_pic_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/hp.png",
+        "content_thumbnail_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/h2.png",
         "view_count": 294,
         "diamond_count": 260
     },
     {
         "creator_name": "Sasha",
-        "creator_profile_pic": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/hp.png",
-        "content_thmbnail_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/h3.png",
+        "creator_profile_pic_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/hp.png",
+        "content_thumbnail_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/h3.png",
         "view_count": 245,
         "diamond_count": 260
     },
     {
         "creator_name": "Jack",
-        "creator_profile_pic": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/hp.png",
-        "content_thmbnail_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/h4.png",
+        "creator_profile_pic_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/hp.png",
+        "content_thumbnail_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Home/h4.png",
         "view_count": 134,
         "diamond_count": 260
     }
