@@ -63,9 +63,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     //-----------------------------------------------------------------------------constraint-layout
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
-    //-----------------------------------------------------------------------------------------glide
-    implementation("com.github.bumptech.glide:glide:4.14.2")
-    implementation("com.github.bumptech.glide:compose:1.0.0-beta01") // TODO: check?
     //------------------------------------------------------------------------------------------coil
     implementation("io.coil-kt.coil3:coil-compose:3.3.0")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")

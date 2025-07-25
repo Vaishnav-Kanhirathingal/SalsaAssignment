@@ -1,8 +1,12 @@
 package com.example.salsa.models.search
 
+import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class SearchProfile(
-    val profileName: String,
-    val profileImageUrl: String,
-    val diamondCount: Int,
-    val viewCount: Int,
+    @SerializedName("profile_name") val profileName: String,
+    @SerializedName("profile_image_url") val profileImageUrl: String,
+    @SerializedName("diamond_count") val diamondCount: Int,
+    @SerializedName("view_count") val viewCount: Int,
 )
