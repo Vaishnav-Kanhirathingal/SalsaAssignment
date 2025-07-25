@@ -139,7 +139,8 @@ class MainActivity : ComponentActivity() {
                 composable<Destinations.Home>(
                     content = {
                         HomeScreen.Screen(
-                            modifier = composableModifier
+                            modifier = composableModifier,
+                            mainViewModel = viewmodel
                         )
                     }
                 )

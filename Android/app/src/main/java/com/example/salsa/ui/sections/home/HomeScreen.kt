@@ -1,5 +1,6 @@
 package com.example.salsa.ui.sections.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -8,10 +9,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -28,7 +32,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.paging.compose.collectAsLazyPagingItems
+import coil3.compose.AsyncImage
+import coil3.size.Dimension
 import com.example.salsa.R
+import com.example.salsa.models.home.HomeFeed
+import com.example.salsa.ui.sections.MainViewModel
 import com.example.salsa.ui.theme.Font
 import com.example.salsa.util.MobilePreview
 import com.example.salsa.util.SharedColors
@@ -36,12 +46,21 @@ import com.example.salsa.util.SharedValues.setSizeLimitation
 
 object HomeScreen {
     @Composable
-    fun Screen(modifier: Modifier) {
-        Content(modifier = modifier.background(color = SharedColors.SURFACE.color))
+    fun Screen(
+        modifier: Modifier,
+        mainViewModel: MainViewModel
+    ) {
+        Content(
+            modifier = modifier.background(color = SharedColors.SURFACE.color),
+            mainViewModel = mainViewModel
+        )
     }
 
     @Composable
-    private fun Content(modifier: Modifier) {
+    private fun Content(
+        modifier: Modifier,
+        mainViewModel: MainViewModel
+    ) {
         Column(
             modifier = modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -52,13 +71,16 @@ object HomeScreen {
                         .fillMaxWidth()
                         .padding(all = 16.dp)
                 )
-
+                Feed(
+                    modifier = Modifier.fillMaxSize(),
+                    mainViewModel = mainViewModel
+                )
             }
         )
     }
 
     @Composable
-    fun TopBar(modifier: Modifier) {
+    private fun TopBar(modifier: Modifier) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -135,13 +157,133 @@ object HomeScreen {
     }
 
     @Composable
-    fun Feed(modifier: Modifier) {
-        TODO()
+    private fun Feed(
+        modifier: Modifier,
+        mainViewModel: MainViewModel
+    ) {
+        val pagingItems = mainViewModel.homePager.collectAsLazyPagingItems()
+        LazyVerticalGrid(
+            modifier = modifier,
+            columns = GridCells.Fixed(2),
+            content = {
+                items(
+                    count = pagingItems.itemCount,
+                    itemContent = {
+                        ContentCard(
+                            modifier = Modifier,
+                            homeFeed = pagingItems.get(index = it)
+                        )
+                    }
+                )
+            }
+        )
+    }
+
+    @Composable
+    private fun ContentCard(
+        modifier: Modifier,
+        homeFeed: HomeFeed?
+    ) {
+        ConstraintLayout(
+            modifier = modifier
+                .aspectRatio(ratio = 0.75f)
+                .padding(all = 1.dp)
+                .background(color = SharedColors.SURFACE_CONTAINER.color),
+            content = {
+                val (eyeRef, viewCountRef, creatorPhotoRef, creatorNameRef, diamondRef, diamondCountRef) = createRefs()
+                Icon(
+                    modifier = Modifier.constrainAs(
+                        ref = eyeRef,
+                        constrainBlock = {
+                            this.top.linkTo(parent.top, margin = 12.dp)
+                            this.start.linkTo(parent.start, margin = 8.dp)
+                        }
+                    ),
+                    painter = painterResource(id = R.drawable.eye),
+                    contentDescription = null,
+                    tint = SharedColors.ON_SURFACE.color
+                )
+                Text(
+                    modifier = Modifier.constrainAs(
+                        ref = viewCountRef,
+                        constrainBlock = {
+                            this.top.linkTo(eyeRef.top)
+                            this.bottom.linkTo(eyeRef.bottom)
+                            this.start.linkTo(eyeRef.end, margin = 2.dp)
+                        }
+                    ),
+                    text = homeFeed?.viewCount?.toString() ?: "Loading",
+                    fontSize = 11.sp,
+                    fontFamily = Font.roboto,
+                    fontWeight = FontWeight.Medium,
+                    color = SharedColors.ON_SURFACE.color,
+                )
+                AsyncImage(
+                    modifier = Modifier
+                        .size(size = 18.dp)
+                        .constrainAs(
+                        ref = creatorPhotoRef,
+                        constrainBlock = {
+                            this.start.linkTo(parent.start, margin = 8.dp)
+                            this.top.linkTo(creatorNameRef.top)
+                            this.bottom.linkTo(diamondRef.bottom)
+                        }
+                    ),
+                    model = homeFeed?.creatorProfilePicUrl ?: "Loading",
+                    contentDescription = null
+                )
+
+                Text(
+                    modifier = Modifier.constrainAs(
+                        ref = creatorNameRef,
+                        constrainBlock = {
+                            this.bottom.linkTo(diamondRef.top, margin = 8.dp)
+                            this.start.linkTo(creatorPhotoRef.end, margin = 8.dp)
+                        }
+                    ),
+                    text = homeFeed?.creatorName ?: "Loading",
+                    fontSize = 11.sp,
+                    fontFamily = Font.roboto,
+                    fontWeight = FontWeight.Medium,
+                    color = SharedColors.ON_SURFACE.color,
+                )
+                Icon(
+                    modifier = Modifier.constrainAs(
+                        ref = diamondRef,
+                        constrainBlock = {
+                            this.bottom.linkTo(parent.bottom, margin = 12.dp)
+                            this.start.linkTo(creatorPhotoRef.start, margin = 8.dp)
+                        }
+                    ),
+                    painter = painterResource(id = R.drawable.profile_diamond),
+                    contentDescription = null,
+                )
+                Text(
+                    modifier = Modifier.constrainAs(
+                        ref = diamondCountRef,
+                        constrainBlock = {
+                            this.top.linkTo(diamondRef.top)
+                            this.bottom.linkTo(diamondRef.bottom)
+                            this.start.linkTo(diamondRef.end, margin = 2.dp)
+                        }
+                    ),
+                    text = homeFeed?.diamondCount?.toString() ?: "Loading",
+                    fontSize = 11.sp,
+                    fontFamily = Font.roboto,
+                    fontWeight = FontWeight.Medium,
+                    color = SharedColors.ON_SURFACE.color,
+                )
+            }
+        )
     }
 }
 
+@SuppressLint("ViewModelConstructorInComposable")
 @Composable
 @MobilePreview
 private fun HomeScreenPrev() {
-    HomeScreen.Screen(modifier = Modifier.fillMaxSize())
+    HomeScreen.Screen(
+        modifier = Modifier.fillMaxSize(),
+        mainViewModel = MainViewModel()
+    )
 }
