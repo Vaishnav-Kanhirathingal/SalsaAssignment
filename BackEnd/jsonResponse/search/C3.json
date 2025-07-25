@@ -1,38 +1,38 @@
- [
-            {
-                "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
-                "profile_name": "",
-                "diamond_count": 4500000,
-                "view_count": 146
-            },
-            {
-                "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
-                "profile_name": "",
-                "diamond_count": 4500000,
-                "view_count": 146
-            },
-            {
-                "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
-                "profile_name": "",
-                "diamond_count": 4500000,
-                "view_count": 146
-            },
-            {
-                "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
-                "profile_name": "",
-                "diamond_count": 4500000,
-                "view_count": 146
-            },
-            {
-                "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
-                "profile_name": "",
-                "diamond_count": 4500000,
-                "view_count": 146
-            },
-            {
-                "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
-                "profile_name": "",
-                "diamond_count": 4500000,
-                "view_count": 146
-            }
-        ]
+[
+    {
+        "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
+        "profile_name": "Indi",
+        "diamond_count": "4.5M",
+        "view_count": 146
+    },
+    {
+        "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
+        "profile_name": "Aja",
+        "diamond_count": "4.5M",
+        "view_count": 146
+    },
+    {
+        "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
+        "profile_name": "Tamia",
+        "diamond_count": "4.5M",
+        "view_count": 146
+    },
+    {
+        "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
+        "profile_name": "Sahana",
+        "diamond_count": "4.5M",
+        "view_count": 146
+    },
+    {
+        "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
+        "profile_name": "Aditi",
+        "diamond_count": "4.5M",
+        "view_count": 146
+    },
+    {
+        "profile_image_url": "https://raw.githubusercontent.com/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/resources/Search/C3/C3P1.png",
+        "profile_name": "Anjali",
+        "diamond_count": "4.5M",
+        "view_count": 146
+    }
+]
