@@ -46,7 +46,7 @@ import com.example.salsa.util.SharedValues
 import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
-    private val viewmodel by viewModels<MainViewModel>()
+    private val viewModel by viewModels<MainViewModel>()
 
     private val TAG = this::class.simpleName
 
@@ -140,14 +140,15 @@ class MainActivity : ComponentActivity() {
                     content = {
                         HomeScreen.Screen(
                             modifier = composableModifier,
-                            mainViewModel = viewmodel
+                            mainViewModel = viewModel
                         )
                     }
                 )
                 composable<Destinations.Search>(
                     content = {
                         SearchScreen.Screen(
-                            modifier = composableModifier
+                            modifier = composableModifier,
+                            mainViewModel = viewModel
                         )
                     }
                 )

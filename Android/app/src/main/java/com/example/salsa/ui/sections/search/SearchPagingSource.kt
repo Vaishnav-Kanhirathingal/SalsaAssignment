@@ -13,7 +13,7 @@ class SearchPagingSource : PagingSource<Int, SearchCategory>() {
             return LoadResult.Page(
                 data = response,
                 prevKey = key.minus(1).takeUnless { it < 0 },
-                nextKey = key.plus(1).takeUnless { it > 10 }
+                nextKey = key.plus(1).takeUnless { it > 5 }
             )
         } catch (e: Exception) {
             e.printStackTrace()
