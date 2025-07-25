@@ -2,7 +2,6 @@ package com.example.salsa.ui.sections.search
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -52,62 +51,54 @@ object SearchScreen {
             content = {
                 item { Spacer(modifier = Modifier.height(height = 12.dp)) }
                 item {
-                    Row(
+                    val text = remember { mutableStateOf("") }
+                    val isFocused = remember { mutableStateOf(false) }
+
+                    BasicTextField(
                         modifier = Modifier
-                            .setSizeLimitation()
                             .fillMaxWidth()
+                            .setSizeLimitation()
                             .padding(horizontal = 16.dp)
                             .clip(shape = RoundedCornerShape(size = 24.dp))
                             .background(color = SharedColors.SURFACE_CONTAINER.color)
-                            .clickable(onClick = { TODO() })
-                            .padding(horizontal = 16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(space = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        content = {
-                            val text = remember { mutableStateOf("") }
-                            val isFocused = remember { mutableStateOf(false) }
-
-                            BasicTextField(
+                            .onFocusChanged(
+                                onFocusChanged = {
+                                    isFocused.value = it.isFocused
+                                }
+                            ),
+                        textStyle = TextStyle(
+                            fontFamily = Font.roboto,
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 12.sp,
+                            color = SharedColors.ON_SURFACE_CONTAINER.color,
+                        ),
+                        cursorBrush = SolidColor(value = SharedColors.CURSOR.color),
+                        value = text.value,
+                        onValueChange = { text.value = it },
+                        decorationBox = {
+                            Row(
                                 modifier = Modifier
-                                    .weight(weight = 1f)
-                                    .onFocusChanged(
-                                        onFocusChanged = {
-                                            isFocused.value = it.isFocused
-                                        }
-                                    ),
-                                textStyle = TextStyle(
-                                    fontFamily = Font.roboto,
-                                    fontWeight = FontWeight.Medium,
-                                    fontSize = 12.sp,
-                                    color = SharedColors.ON_SURFACE_CONTAINER.color,
-                                ),
-                                cursorBrush = SolidColor(value = SharedColors.CURSOR.color),
-                                value = text.value,
-                                onValueChange = { text.value = it },
-                                decorationBox = {
-                                    Row(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        horizontalArrangement = Arrangement.spacedBy(space = 8.dp),
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        content = {
-                                            Image(
-                                                painter = painterResource(id = R.drawable.search),
-                                                contentDescription = null,
-                                                colorFilter = ColorFilter.tint(color = SharedColors.ON_SURFACE_CONTAINER.color)
-                                            )
-                                            if (text.value.isEmpty() && !isFocused.value) {
-                                                Text(
-                                                    text = "Search",
-                                                    fontFamily = Font.roboto,
-                                                    fontSize = 12.sp,
-                                                    fontWeight = FontWeight.Medium,
-                                                    color = SharedColors.ON_SURFACE_CONTAINER.color
-                                                )
-                                            } else {
-                                                it()
-                                            }
-                                        }
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp),
+                                horizontalArrangement = Arrangement.spacedBy(space = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                content = {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.search),
+                                        contentDescription = null,
+                                        colorFilter = ColorFilter.tint(color = SharedColors.ON_SURFACE_CONTAINER.color)
                                     )
+                                    if (text.value.isEmpty() && !isFocused.value) {
+                                        Text(
+                                            text = "Search",
+                                            fontFamily = Font.roboto,
+                                            fontSize = 12.sp,
+                                            fontWeight = FontWeight.Medium,
+                                            color = SharedColors.ON_SURFACE_CONTAINER.color
+                                        )
+                                    } else {
+                                        it()
+                                    }
                                 }
                             )
                         }
