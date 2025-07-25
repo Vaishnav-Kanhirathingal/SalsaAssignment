@@ -1,6 +1,7 @@
 package com.example.salsa
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -18,19 +19,30 @@ import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hasRoute
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.example.salsa.ui.sections.home.HomeScreen
+import com.example.salsa.ui.sections.profile.ProfileScreen
+import com.example.salsa.ui.sections.search.SearchScreen
 import com.example.salsa.ui.theme.Font
 import com.example.salsa.ui.theme.SalsaTheme
 import com.example.salsa.util.SharedValues
+import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
+    private val TAG = this::class.simpleName
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -42,36 +54,105 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun Screen(
+    private fun Screen(
         modifier: Modifier
     ) {
+        val navController = rememberNavController()
+        val currentDestination: Destinations? = navController.currentBackStackEntryAsState()
+            .value?.destination?.let { destination: NavDestination ->
+                Log.d(TAG, "route = ${destination.route}")
+                when {
+                    destination.hasRoute(route = Destinations.Home::class) -> Destinations.Home
+                    destination.hasRoute(route = Destinations.Search::class) -> Destinations.Search
+                    destination.hasRoute(route = Destinations.Profile::class) -> Destinations.Profile
+                    else -> null
+                }
+            }
         Scaffold(
             modifier = modifier,
             content = {
-                NavHost(
+                MainNavHost(
                     modifier = Modifier
                         .padding(paddingValues = it)
-                        .fillMaxSize()
+                        .fillMaxSize(),
+                    navHostController = navController
                 )
             },
             bottomBar = {
-                val pageSelected = remember { mutableStateOf(BottomBarPages.FOR_YOU) }
-                BottomBar(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
-                    pageSelected = pageSelected.value,
-                    onPageSelected = { pageSelected.value = it }
+                currentDestination?.let { destinations ->
+                    BottomBar(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp),
+                        pageSelected = when (destinations) {
+                            is Destinations.Home -> BottomBarPages.FOR_YOU
+                            is Destinations.Search -> BottomBarPages.SEARCH
+                            is Destinations.Profile -> BottomBarPages.PROFILE
+                        },
+                        onPageSelected = {
+                            when (it) {
+                                BottomBarPages.FOR_YOU -> Destinations.Home
+                                BottomBarPages.SEARCH -> Destinations.Search
+                                BottomBarPages.CHAT -> null
+                                BottomBarPages.MATCH -> null
+                                BottomBarPages.PROFILE -> Destinations.Profile
+                            }?.let { targetDestination: Destinations ->
+                                navController.navigate(
+                                    route = targetDestination,
+                                    builder = {
+                                        popUpTo(
+                                            route = targetDestination,
+                                            popUpToBuilder = { inclusive = false }
+                                        )
+                                        launchSingleTop = true
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+            }
+        )
+    }
+
+    @Composable
+    private fun MainNavHost(
+        modifier: Modifier,
+        navHostController: NavHostController
+    ) {
+        NavHost(
+            modifier = modifier,
+            navController = navHostController,
+            startDestination = Destinations.Home,
+            builder = {
+                val composableModifier = Modifier.fillMaxSize()
+                composable<Destinations.Home>(
+                    content = {
+                        HomeScreen.Screen(
+                            modifier = composableModifier
+                        )
+                    }
+                )
+                composable<Destinations.Search>(
+                    content = {
+                        SearchScreen.Screen(
+                            modifier = composableModifier
+                        )
+                    }
+                )
+                composable<Destinations.Profile>(
+                    content = {
+                        ProfileScreen.Screen(
+                            modifier = composableModifier
+                        )
+                    }
                 )
             }
         )
     }
 
     @Composable
-    fun NavHost(modifier: Modifier) {
-//        TODO()
-    }
-
-    @Composable
-    fun BottomBar(
+    private fun BottomBar(
         modifier: Modifier,
         pageSelected: BottomBarPages,
         onPageSelected: (BottomBarPages) -> Unit
@@ -157,4 +238,16 @@ enum class BottomBarPages(
         selectedResource = R.drawable.bottom_bar_profile_selected,
         unselectedResource = R.drawable.bottom_bar_profile_unselected
     )
+}
+
+sealed class Destinations {
+
+    @Serializable
+    data object Home : Destinations()
+
+    @Serializable
+    data object Search : Destinations()
+
+    @Serializable
+    data object Profile : Destinations()
 }
