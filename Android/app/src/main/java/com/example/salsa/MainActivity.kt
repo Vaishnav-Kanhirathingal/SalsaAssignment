@@ -5,8 +5,10 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -32,15 +35,19 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.salsa.ui.sections.MainViewModel
 import com.example.salsa.ui.sections.home.HomeScreen
 import com.example.salsa.ui.sections.profile.ProfileScreen
 import com.example.salsa.ui.sections.search.SearchScreen
 import com.example.salsa.ui.theme.Font
 import com.example.salsa.ui.theme.SalsaTheme
+import com.example.salsa.util.SharedColors
 import com.example.salsa.util.SharedValues
 import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
+    private val viewmodel by viewModels<MainViewModel>()
+
     private val TAG = this::class.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,6 +77,8 @@ class MainActivity : ComponentActivity() {
             }
         Scaffold(
             modifier = modifier,
+            containerColor = SharedColors.SURFACE.color,
+            contentColor = SharedColors.SURFACE.color,
             content = {
                 MainNavHost(
                     modifier = Modifier
@@ -83,6 +92,7 @@ class MainActivity : ComponentActivity() {
                     BottomBar(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .background(color = SharedColors.SURFACE.color)
                             .padding(horizontal = 12.dp),
                         pageSelected = when (destinations) {
                             is Destinations.Home -> BottomBarPages.FOR_YOU
@@ -180,13 +190,15 @@ class MainActivity : ComponentActivity() {
                 content = {
                     Image(
                         painter = painterResource(id = if (isSelected) bottomBarPages.selectedResource else bottomBarPages.unselectedResource),
-                        contentDescription = null
+                        contentDescription = null,
+                        colorFilter = ColorFilter.tint(color = SharedColors.ON_SURFACE.color)
                     )
                     Text(
                         text = bottomBarPages.title,
                         fontFamily = Font.roboto,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
-                        fontSize = 12.sp
+                        fontSize = 12.sp,
+                        color = SharedColors.ON_SURFACE.color
                     )
                 }
             )
