@@ -1,6 +1,7 @@
 package com.example.salsa.data
 
 import com.example.salsa.models.home.HomeFeed
+import com.example.salsa.models.profile.UserProfile
 import com.example.salsa.models.search.SearchCategory
 import com.example.salsa.models.search.SearchProfile
 import retrofit2.Retrofit
@@ -16,6 +17,7 @@ object Apis {
 
     val homeApi: HomeApi = retrofit.create(HomeApi::class.java)
     val searchApi: SearchApi = retrofit.create(SearchApi::class.java)
+    val userProfileApi: UserProfileApi = retrofit.create(UserProfileApi::class.java)
 }
 
 interface HomeApi {
@@ -29,4 +31,12 @@ interface SearchApi {
 
     @GET("/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/jsonResponse/search/C{id}.json")
     suspend fun categoryPage(@Path("id") id: Int): List<SearchProfile>
+}
+
+interface UserProfileApi {
+    @GET("/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/jsonResponse/profile.json")
+    suspend fun getUserProfile(): UserProfile
+
+    @GET("/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/jsonResponse/UserPosts.json")
+    suspend fun getUserPosts(): List<String>
 }

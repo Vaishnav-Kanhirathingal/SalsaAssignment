@@ -133,7 +133,7 @@ class MainActivity : ComponentActivity() {
         NavHost(
             modifier = modifier,
             navController = navHostController,
-            startDestination = Destinations.Home,
+            startDestination = Destinations.Profile,
             builder = {
                 val composableModifier = Modifier.fillMaxSize()
                 composable<Destinations.Home>(
@@ -155,7 +155,8 @@ class MainActivity : ComponentActivity() {
                 composable<Destinations.Profile>(
                     content = {
                         ProfileScreen.Screen(
-                            modifier = composableModifier
+                            modifier = composableModifier,
+                            mainViewModel = viewModel
                         )
                     }
                 )
