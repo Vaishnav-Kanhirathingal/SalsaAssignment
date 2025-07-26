@@ -42,10 +42,10 @@ import com.example.salsa.ui.sections.MainViewModel
 import com.example.salsa.ui.sections.home.HomeScreen
 import com.example.salsa.ui.sections.profile.ProfileScreen
 import com.example.salsa.ui.sections.search.SearchScreen
-import com.example.salsa.ui.theme.Font
 import com.example.salsa.ui.theme.SalsaTheme
-import com.example.salsa.util.SharedColors
-import com.example.salsa.util.SharedValues
+import com.example.salsa.util.resources.SharedColors
+import com.example.salsa.util.resources.SharedFonts
+import com.example.salsa.util.resources.SharedValues
 import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
@@ -219,7 +219,7 @@ class MainActivity : ComponentActivity() {
                                         Text(
                                             modifier = Modifier,
                                             text = nc.toString(),
-                                            fontFamily = Font.roboto,
+                                            fontFamily = SharedFonts.roboto,
                                             fontWeight = FontWeight.Medium,
                                             fontSize = 11.sp,
                                             lineHeight = 11.sp
@@ -235,7 +235,7 @@ class MainActivity : ComponentActivity() {
                             bottom = 8.dp
                         ),
                         text = bottomBarPages.title,
-                        fontFamily = Font.roboto,
+                        fontFamily = SharedFonts.roboto,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                         fontSize = 12.sp,
                         lineHeight = 12.sp,

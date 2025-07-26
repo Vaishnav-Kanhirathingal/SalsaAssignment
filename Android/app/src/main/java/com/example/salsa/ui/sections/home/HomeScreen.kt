@@ -40,10 +40,10 @@ import coil3.compose.AsyncImage
 import com.example.salsa.R
 import com.example.salsa.models.home.HomeFeed
 import com.example.salsa.ui.sections.MainViewModel
-import com.example.salsa.ui.theme.Font
-import com.example.salsa.util.MobilePreview
-import com.example.salsa.util.SharedColors
-import com.example.salsa.util.SharedValues.setSizeLimitation
+import com.example.salsa.util.DualThemePreview
+import com.example.salsa.util.resources.SharedColors
+import com.example.salsa.util.resources.SharedFonts
+import com.example.salsa.util.resources.SharedValues.setSizeLimitation
 
 object HomeScreen {
     @Composable
@@ -96,7 +96,7 @@ object HomeScreen {
                 Text(
                     modifier = Modifier.padding(start = 6.dp),
                     text = "260 ",
-                    fontFamily = Font.roboto,
+                    fontFamily = SharedFonts.roboto,
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
                     color = SharedColors.ON_SURFACE.color
@@ -147,7 +147,7 @@ object HomeScreen {
                     content = {
                         Text(
                             text = "Go Live",
-                            fontFamily = Font.roboto,
+                            fontFamily = SharedFonts.roboto,
                             fontWeight = FontWeight.Medium,
                             fontSize = 14.sp,
                             color = Color(color = 0xFFFCFCFC)
@@ -236,7 +236,7 @@ object HomeScreen {
                     ),
                     text = homeFeed?.viewCount?.toString() ?: "Loading",
                     fontSize = 11.sp,
-                    fontFamily = Font.roboto,
+                    fontFamily = SharedFonts.roboto,
                     fontWeight = FontWeight.Medium,
                     color = SharedColors.ON_SURFACE.color,
                 )
@@ -267,7 +267,7 @@ object HomeScreen {
                     ),
                     text = homeFeed?.creatorName ?: "Loading",
                     fontSize = 11.sp,
-                    fontFamily = Font.roboto,
+                    fontFamily = SharedFonts.roboto,
                     fontWeight = FontWeight.Medium,
                     color = SharedColors.ON_SURFACE.color,
                 )
@@ -293,7 +293,7 @@ object HomeScreen {
                     ),
                     text = homeFeed?.diamondCount?.toString() ?: "Loading",
                     fontSize = 11.sp,
-                    fontFamily = Font.roboto,
+                    fontFamily = SharedFonts.roboto,
                     fontWeight = FontWeight.Medium,
                     color = SharedColors.ON_SURFACE.color,
                 )
@@ -304,7 +304,7 @@ object HomeScreen {
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
-@MobilePreview
+@DualThemePreview
 private fun HomeScreenPrev() {
     HomeScreen.Screen(
         modifier = Modifier.fillMaxSize(),

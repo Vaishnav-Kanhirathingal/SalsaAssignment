@@ -1,4 +1,4 @@
-package com.example.salsa.util
+package com.example.salsa.util.resources
 
 import androidx.annotation.ColorInt
 import androidx.compose.foundation.isSystemInDarkTheme

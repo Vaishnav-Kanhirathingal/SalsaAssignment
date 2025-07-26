@@ -1,4 +1,4 @@
-package com.example.salsa.util
+package com.example.salsa.util.resources
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -21,11 +21,11 @@ object SharedValues {
     fun Modifier.visibilityGradient(): Modifier {
         val startPoint = if (isSystemInDarkTheme()) 0x88666666 else 0x88888888
         return this.background(
-            Brush.verticalGradient(
+            Brush.Companion.verticalGradient(
                 colorStops = arrayOf(
                     0.0f to Color(startPoint),  // top edge
-                    0.3f to Color.Transparent,  // fade out
-                    0.7f to Color.Transparent,  // fade in
+                    0.3f to Color.Companion.Transparent,  // fade out
+                    0.7f to Color.Companion.Transparent,  // fade in
                     1.0f to Color(startPoint)   // bottom edge
                 )
             )

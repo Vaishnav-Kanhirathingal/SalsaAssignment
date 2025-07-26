@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
     showBackground = true,
     uiMode = Configuration.UI_MODE_NIGHT_NO
 )
-annotation class MobilePreview
+private annotation class MobilePreview
 
 @Preview(
     widthDp = 360,
@@ -17,7 +17,7 @@ annotation class MobilePreview
     showBackground = true,
     uiMode = Configuration.UI_MODE_NIGHT_YES
 )
-annotation class MobilePreviewDark
+private annotation class MobilePreviewDark
 
 @MobilePreview
 @MobilePreviewDark

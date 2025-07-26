@@ -48,12 +48,12 @@ import coil3.compose.AsyncImage
 import com.example.salsa.R
 import com.example.salsa.models.profile.UserProfile
 import com.example.salsa.ui.sections.MainViewModel
-import com.example.salsa.ui.theme.Font
 import com.example.salsa.util.DualThemePreview
 import com.example.salsa.util.ScreenState
-import com.example.salsa.util.SharedColors
-import com.example.salsa.util.SharedValues
-import com.example.salsa.util.SharedValues.setSizeLimitation
+import com.example.salsa.util.resources.SharedColors
+import com.example.salsa.util.resources.SharedFonts
+import com.example.salsa.util.resources.SharedValues
+import com.example.salsa.util.resources.SharedValues.setSizeLimitation
 import kotlinx.coroutines.delay
 
 object ProfileScreen {
@@ -114,7 +114,7 @@ object ProfileScreen {
                         Text(
                             modifier = Modifier.weight(weight = 1f),
                             text = userProfile.userName,
-                            fontFamily = Font.roboto,
+                            fontFamily = SharedFonts.roboto,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = SharedColors.ON_SURFACE.color
@@ -219,7 +219,7 @@ object ProfileScreen {
                                                 }
                                             ),
                                             text = userProfile.userFullName,
-                                            fontFamily = Font.roboto,
+                                            fontFamily = SharedFonts.roboto,
                                             fontWeight = FontWeight.Medium,
                                             fontSize = 14.sp,
                                             color = SharedColors.ON_SURFACE.color,
@@ -255,14 +255,14 @@ object ProfileScreen {
                                                         content = {
                                                             Text(
                                                                 text = count.toString(),
-                                                                fontFamily = Font.roboto,
+                                                                fontFamily = SharedFonts.roboto,
                                                                 fontWeight = FontWeight.Medium,
                                                                 fontSize = 18.sp,
                                                                 color = SharedColors.ON_SURFACE.color
                                                             )
                                                             Text(
                                                                 text = label,
-                                                                fontFamily = Font.roboto,
+                                                                fontFamily = SharedFonts.roboto,
                                                                 fontWeight = FontWeight.Medium,
                                                                 fontSize = 11.sp,
                                                                 color = SharedColors.ON_SURFACE.color
@@ -322,7 +322,7 @@ object ProfileScreen {
                                                 content = {
                                                     Text(
                                                         text = text,
-                                                        fontFamily = Font.roboto,
+                                                        fontFamily = SharedFonts.roboto,
                                                         fontSize = 12.sp,
                                                         fontWeight = FontWeight.Medium,
                                                         color = SharedColors.ON_SURFACE.color
@@ -359,7 +359,7 @@ object ProfileScreen {
                                                 .weight(weight = 1f)
                                                 .padding(start = 24.dp),
                                             text = "Earn 💎 500 more to redeem \$15",
-                                            fontFamily = Font.roboto,
+                                            fontFamily = SharedFonts.roboto,
                                             fontWeight = FontWeight.Medium,
                                             fontSize = 11.sp,
                                             color = SharedColors.ON_SURFACE.color
@@ -383,7 +383,7 @@ object ProfileScreen {
                                             content = {
                                                 Text(
                                                     text = "GO LIVE",
-                                                    fontFamily = Font.roboto,
+                                                    fontFamily = SharedFonts.roboto,
                                                     fontWeight = FontWeight.Medium,
                                                     fontSize = 12.sp,
                                                     color = SharedColors.ON_SURFACE.color

@@ -50,12 +50,12 @@ import com.example.salsa.R
 import com.example.salsa.models.search.SearchCategory
 import com.example.salsa.models.search.SearchProfile
 import com.example.salsa.ui.sections.MainViewModel
-import com.example.salsa.ui.theme.Font
-import com.example.salsa.util.MobilePreviewDark
-import com.example.salsa.util.SharedColors
-import com.example.salsa.util.SharedValues
-import com.example.salsa.util.SharedValues.setSizeLimitation
-import com.example.salsa.util.SharedValues.visibilityGradient
+import com.example.salsa.util.DualThemePreview
+import com.example.salsa.util.resources.SharedColors
+import com.example.salsa.util.resources.SharedFonts
+import com.example.salsa.util.resources.SharedValues
+import com.example.salsa.util.resources.SharedValues.setSizeLimitation
+import com.example.salsa.util.resources.SharedValues.visibilityGradient
 import kotlinx.coroutines.CoroutineScope
 
 object SearchScreen {
@@ -101,7 +101,7 @@ object SearchScreen {
                                 }
                             ),
                         textStyle = TextStyle(
-                            fontFamily = Font.roboto,
+                            fontFamily = SharedFonts.roboto,
                             fontWeight = FontWeight.Medium,
                             fontSize = 12.sp,
                             color = SharedColors.ON_SURFACE_CONTAINER.color,
@@ -125,7 +125,7 @@ object SearchScreen {
                                     if (text.value.isEmpty() && !isFocused.value) {
                                         Text(
                                             text = "Search",
-                                            fontFamily = Font.roboto,
+                                            fontFamily = SharedFonts.roboto,
                                             fontSize = 12.sp,
                                             fontWeight = FontWeight.Medium,
                                             color = SharedColors.ON_SURFACE_CONTAINER.color
@@ -149,7 +149,7 @@ object SearchScreen {
                                 bottom = 12.dp
                             ),
                         text = "Recommended",
-                        fontFamily = Font.roboto,
+                        fontFamily = SharedFonts.roboto,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Medium,
                         color = SharedColors.ON_SURFACE_CONTAINER.color
@@ -188,7 +188,7 @@ object SearchScreen {
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     text = searchCategory?.profileCategoryTitle ?: "Loading",
-                    fontFamily = Font.roboto,
+                    fontFamily = SharedFonts.roboto,
                     fontWeight = FontWeight.Medium,
                     fontSize = 12.sp,
                     color = SharedColors.ON_SURFACE.color
@@ -291,7 +291,7 @@ object SearchScreen {
                         }
                     ),
                     text = (searchProfile?.viewCount ?: 0).toString(),
-                    fontFamily = Font.roboto,
+                    fontFamily = SharedFonts.roboto,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Medium,
                     color = SharedColors.ON_SURFACE.color
@@ -305,7 +305,7 @@ object SearchScreen {
                         }
                     ),
                     text = (searchProfile?.profileName ?: 0).toString(),
-                    fontFamily = Font.roboto,
+                    fontFamily = SharedFonts.roboto,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Medium,
                     color = SharedColors.ON_SURFACE.color
@@ -334,7 +334,7 @@ object SearchScreen {
                         }
                     ),
                     text = (searchProfile?.diamondCount ?: 0).toString(),
-                    fontFamily = Font.roboto,
+                    fontFamily = SharedFonts.roboto,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Medium,
                     color = SharedColors.ON_SURFACE.color
@@ -346,7 +346,7 @@ object SearchScreen {
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
-@MobilePreviewDark
+@DualThemePreview
 private fun SearchScreenPrev() {
     SearchScreen.Screen(
         modifier = Modifier.fillMaxSize(),
