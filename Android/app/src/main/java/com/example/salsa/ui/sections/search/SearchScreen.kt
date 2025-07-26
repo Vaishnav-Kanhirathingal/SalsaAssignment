@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Icon
@@ -78,6 +79,7 @@ object SearchScreen {
         val pagingItems = mainViewModel.searchPager.collectAsLazyPagingItems()
         LazyColumn(
             modifier = modifier.background(color = SharedColors.SURFACE.color),
+            state = rememberLazyListState(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
             content = {
@@ -199,22 +201,16 @@ object SearchScreen {
                         }
                     ).flow.cachedIn(scope = coroutineScope)
                 }
-                if (categoryPager == null) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(164.dp)
-                    )
-                } else {
-                    val lazyItems = categoryPager.collectAsLazyPagingItems()
-                    LazyRow(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(164.dp),
-                        horizontalArrangement = Arrangement.spacedBy(space = 2.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        contentPadding = PaddingValues(horizontal = 16.dp),
-                        content = {
+                val lazyItems = categoryPager?.collectAsLazyPagingItems()
+                LazyRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(164.dp),
+                    horizontalArrangement = Arrangement.spacedBy(space = 2.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    contentPadding = PaddingValues(horizontal = 16.dp),
+                    content = {
+                        lazyItems?.let { lt ->
                             items(
                                 count = lazyItems.itemCount,
                                 itemContent = {
@@ -222,14 +218,13 @@ object SearchScreen {
                                         modifier = Modifier
                                             .fillMaxHeight()
                                             .aspectRatio(0.75f),
-                                        searchProfile = lazyItems.get(index = it)
+                                        searchProfile = lt.get(index = it)
                                     )
                                 }
                             )
                         }
-                    )
-                }
-                // TODO: h-pager
+                    }
+                )
             }
         )
     }
