@@ -426,7 +426,8 @@ object ProfileScreen {
                                 AsyncImage(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .aspectRatio(ratio = 1f),
+                                        .aspectRatio(ratio = 1f)
+                                        .background(color = SharedColors.SURFACE_CONTAINER.color),
                                     model = lazyPagingItems.get(index = it),
                                     contentScale = ContentScale.Crop,
                                     contentDescription = null

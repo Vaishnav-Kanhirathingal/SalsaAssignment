@@ -260,7 +260,9 @@ object SearchScreen {
                     contentAlignment = Alignment.Center,
                     content = {
                         AsyncImage(
-                            modifier = Modifier.fillMaxSize(),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(color = SharedColors.SURFACE_CONTAINER.color),
                             model = searchProfile?.profileImageUrl,
                             contentScale = ContentScale.Crop,
                             contentDescription = null

@@ -206,7 +206,8 @@ object HomeScreen {
                                 this.start.linkTo(parent.start)
                                 this.end.linkTo(parent.end)
                             }
-                        ),
+                        )
+                        .background(color = SharedColors.SURFACE_CONTAINER.color),
                     model = homeFeed?.contentThumbnailUrl,
                     contentScale = ContentScale.Crop,
                     contentDescription = null
