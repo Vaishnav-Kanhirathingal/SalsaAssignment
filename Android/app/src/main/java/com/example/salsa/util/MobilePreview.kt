@@ -5,7 +5,7 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @Preview(
     widthDp = 360,
-    heightDp = 800,
+    heightDp = 720,
     showBackground = true,
     uiMode = Configuration.UI_MODE_NIGHT_NO
 )
@@ -13,7 +13,7 @@ annotation class MobilePreview
 
 @Preview(
     widthDp = 360,
-    heightDp = 800,
+    heightDp = 720,
     showBackground = true,
     uiMode = Configuration.UI_MODE_NIGHT_YES
 )
