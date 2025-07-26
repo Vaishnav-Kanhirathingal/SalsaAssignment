@@ -3,15 +3,18 @@ package com.example.salsa.ui.sections.profile
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -249,6 +252,39 @@ object ProfileScreen {
                                 )
                             }
                         )
+                    }
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(space = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    content = {
+                        @Composable
+                        fun RowScope.CustomCardButton(text: String) {
+                            Box(
+                                modifier = Modifier
+                                    .weight(weight = 1f)
+                                    .setSizeLimitation()
+                                    .clip(RoundedCornerShape(size = 8.dp))
+                                    .background(color = SharedColors.SURFACE_CONTAINER.color)
+                                    .clickable(onClick = { TODO() }),
+                                contentAlignment = Alignment.Center,
+                                content = {
+                                    Text(
+                                        text = text,
+                                        fontFamily = Font.roboto,
+                                        fontSize = 12.sp,
+                                        fontWeight = FontWeight.Medium,
+                                        color = SharedColors.ON_SURFACE.color
+                                    )
+                                }
+                            )
+                        }
+                        CustomCardButton(text = "Edit profile")
+                        CustomCardButton(text = "Share profile")
                     }
                 )
             }
