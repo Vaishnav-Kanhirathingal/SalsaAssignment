@@ -24,7 +24,7 @@ As discussed, minor UI changes have been made to the app's design
 
 <img src="https://github.com/user-attachments/assets/1576691a-47a4-45a4-8b45-d333524b2c58" alt="profile light" width="273">
 <img src="https://github.com/user-attachments/assets/19d69930-5f54-41f1-8c36-c4cf8ffe996b" alt="search light" width="273">
-<img src="https://github.com/user-attachments/assets/bacbe3d3-9082-4c5c-843b-4cdfc2ce50ea" alt="home light" width="273">
+<img src="https://github.com/user-attachments/assets/666dc20d-950e-4b27-adff-cba4f1c569fd" alt="home light" width="273">
 
 > 1. `Home` or the `For You` Page
 > 2. `Search` Page
