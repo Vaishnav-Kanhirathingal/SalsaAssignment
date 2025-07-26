@@ -378,6 +378,7 @@ object ProfileScreen {
                                                         )
                                                     )
                                                 )
+                                                .clickable(onClick = { TODO() })
                                                 .padding(horizontal = 24.dp),
                                             contentAlignment = Alignment.Center,
                                             content = {
