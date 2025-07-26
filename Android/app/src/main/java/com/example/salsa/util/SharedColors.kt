@@ -32,6 +32,10 @@ enum class SharedColors(
     PROFILE_CONTAINER(
         darkColor = 0xFF1A1A1A,
         lightColor = 0xFFE5E5E5
+    ),
+    NOTIFICATION_CIRCLE(
+        darkColor = 0xFFFEBE24,
+        lightColor = 0xFFFEBE24
     );
 
     val color: Color @Composable get() = Color(color = if (isSystemInDarkTheme()) this.darkColor else this.lightColor)

@@ -11,13 +11,17 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -133,7 +137,7 @@ class MainActivity : ComponentActivity() {
         NavHost(
             modifier = modifier,
             navController = navHostController,
-            startDestination = Destinations.Profile, // TODO: change
+            startDestination = Destinations.Search, // TODO: change
             builder = {
                 val composableModifier = Modifier.fillMaxSize()
                 composable<Destinations.Home>(
@@ -175,6 +179,7 @@ class MainActivity : ComponentActivity() {
             bottomBarPages: BottomBarPages,
             isSelected: Boolean,
             onClick: () -> Unit,
+            notificationCount: Int?
         ) {
             Column(
                 modifier = Modifier
@@ -183,27 +188,58 @@ class MainActivity : ComponentActivity() {
                         minWidth = SharedValues.minimumTouchSize,
                         minHeight = SharedValues.minimumTouchSize
                     )
-                    .clickable(onClick = onClick)
-                    .padding(
-                        top = 12.dp,
-                        bottom = 4.dp
-                    ),
+                    .clickable(onClick = onClick),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(
-                    space = 2.dp,
-                    alignment = Alignment.CenterVertically
-                ),
+                verticalArrangement = Arrangement.Center,
                 content = {
-                    Image(
-                        painter = painterResource(id = if (isSelected) bottomBarPages.selectedResource else bottomBarPages.unselectedResource),
-                        contentDescription = null,
-                        colorFilter = ColorFilter.tint(color = SharedColors.ON_SURFACE.color)
+                    Box(
+                        modifier = Modifier,
+                        content = {
+                            Image(
+                                modifier = Modifier.padding(
+                                    start = 8.dp,
+                                    end = 8.dp,
+                                    top = 12.dp
+                                ),
+                                painter = painterResource(id = if (isSelected) bottomBarPages.selectedResource else bottomBarPages.unselectedResource),
+                                contentDescription = null,
+                                colorFilter = ColorFilter.tint(color = SharedColors.ON_SURFACE.color)
+                            )
+                            notificationCount?.takeUnless { it == 0 }?.let { nc ->
+                                Box(
+                                    modifier = Modifier
+                                        .padding(top = 6.dp)
+                                        .align(alignment = Alignment.TopEnd)
+                                        .size(size = 16.dp)
+                                        .background(
+                                            color = SharedColors.NOTIFICATION_CIRCLE.color,
+                                            shape = CircleShape
+                                        ),
+                                    contentAlignment = Alignment.Center,
+                                    content = {
+                                        Text(
+                                            modifier = Modifier,
+                                            text = nc.toString(),
+                                            fontFamily = Font.roboto,
+                                            fontWeight = FontWeight.Medium,
+                                            fontSize = 11.sp,
+                                            lineHeight = 11.sp
+                                        )
+                                    }
+                                )
+                            }
+                        }
                     )
                     Text(
+                        modifier = Modifier.padding(
+                            top = 8.dp,
+                            bottom = 8.dp
+                        ),
                         text = bottomBarPages.title,
                         fontFamily = Font.roboto,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                         fontSize = 12.sp,
+                        lineHeight = 12.sp,
                         color = SharedColors.ON_SURFACE.color
                     )
                 }
@@ -219,6 +255,7 @@ class MainActivity : ComponentActivity() {
                         bottomBarPages = bottomBarPages,
                         isSelected = (pageSelected == bottomBarPages),
                         onClick = { onPageSelected(bottomBarPages) },
+                        notificationCount = if (bottomBarPages == BottomBarPages.CHAT) 4 else null
                     )
                 }
             }

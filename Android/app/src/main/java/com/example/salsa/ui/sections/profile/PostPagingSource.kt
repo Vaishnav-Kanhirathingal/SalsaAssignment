@@ -12,7 +12,7 @@ class PostPagingSource: PagingSource<Int, String>() {
             return LoadResult.Page(
                 data = response,
                 prevKey = key.minus(1).takeUnless { it < 0 },
-                nextKey = key.plus(1).takeUnless { it > 10 }
+                nextKey = key.plus(1).takeUnless { it > 30 }
             )
         } catch (e: Exception) {
             e.printStackTrace()
