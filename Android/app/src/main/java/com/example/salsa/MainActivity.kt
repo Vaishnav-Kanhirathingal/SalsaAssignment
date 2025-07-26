@@ -133,7 +133,7 @@ class MainActivity : ComponentActivity() {
         NavHost(
             modifier = modifier,
             navController = navHostController,
-            startDestination = Destinations.Profile,
+            startDestination = Destinations.Profile, // TODO: change
             builder = {
                 val composableModifier = Modifier.fillMaxSize()
                 composable<Destinations.Home>(
@@ -184,7 +184,10 @@ class MainActivity : ComponentActivity() {
                         minHeight = SharedValues.minimumTouchSize
                     )
                     .clickable(onClick = onClick)
-                    .padding(vertical = 6.dp),
+                    .padding(
+                        top = 12.dp,
+                        bottom = 4.dp
+                    ),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(
                     space = 2.dp,
