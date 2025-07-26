@@ -10,6 +10,24 @@ As discussed, minor UI changes have been made to the app's design
 - Issues - Also, Search screen has stutters due to nested scrolling (LazyRow inside a LazyColumn). This can be optimized to some extent but not much without a backend overhaul. `Pagination` has been added to every screen to keep the app somewhat realistic.
 - Backend - Internet is important for this app to function. Backend is stored in a different github folder and is being fetched from the internet using the `raw.githubusercontent.com` Api.
 
+
+![dark_profile](https://github.com/user-attachments/assets/d7f08b09-b7c5-4cd3-b411-fda35a5edae3)
+![dark_search](https://github.com/user-attachments/assets/ab4bfa28-d53d-4a08-9f76-a809152aadf7)
+![dark_home](https://github.com/user-attachments/assets/c9b2e4ae-42f0-477c-85eb-4b8323a9977c)
+![light_home](https://github.com/user-attachments/assets/1576691a-47a4-45a4-8b45-d333524b2c58)
+![light_search](https://github.com/user-attachments/assets/19d69930-5f54-41f1-8c36-c4cf8ffe996b)
+![light_profile](https://github.com/user-attachments/assets/bacbe3d3-9082-4c5c-843b-4cdfc2ce50ea)
+
+
+
+
+
+
+
+
+
+
+
 ## Dark Mode Demo (The required version)
 
 <img src="https://github.com/user-attachments/assets/925f3d4c-acd0-4f8d-998a-4f42fe5a41d6" alt="home dark" width="273">
