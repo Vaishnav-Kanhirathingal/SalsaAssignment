@@ -1,4 +1,4 @@
-package com.example.salsa.util
+package com.example.salsa.util.annotation
 
 import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview

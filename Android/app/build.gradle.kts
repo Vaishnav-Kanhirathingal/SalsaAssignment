@@ -58,18 +58,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     //------------------------------------------------------------------------------------navigation
-    implementation("androidx.navigation:navigation-compose:2.9.2")
+    implementation(libs.androidx.navigation.compose)
     //---------------------------------------------------------------------------------serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation(libs.kotlinx.serialization.json)
     //-----------------------------------------------------------------------------constraint-layout
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
+    implementation(libs.androidx.constraintlayout.compose)
     //------------------------------------------------------------------------------------------coil
-    implementation("io.coil-kt.coil3:coil-compose:3.3.0")
-    implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
     //----------------------------------------------------------------------------------------paging
-    implementation("androidx.paging:paging-runtime:3.3.6")
-    implementation("androidx.paging:paging-compose:3.4.0-alpha01")
+    implementation(libs.androidx.paging.compose)
     //--------------------------------------------------------------------------------------retrofit
-    implementation("com.squareup.retrofit2:retrofit:3.0.0")
-    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }

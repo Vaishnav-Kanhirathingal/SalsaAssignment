@@ -136,7 +136,7 @@ class MainActivity : ComponentActivity() {
         NavHost(
             modifier = modifier,
             navController = navHostController,
-            startDestination = Destinations.Search, // TODO: change
+            startDestination = Destinations.Home,
             builder = {
                 val composableModifier = Modifier.fillMaxSize()
                 composable<Destinations.Home>(

@@ -50,7 +50,7 @@ import com.example.salsa.R
 import com.example.salsa.models.search.SearchCategory
 import com.example.salsa.models.search.SearchProfile
 import com.example.salsa.ui.sections.MainViewModel
-import com.example.salsa.util.DualThemePreview
+import com.example.salsa.util.annotation.DualThemePreview
 import com.example.salsa.util.resources.SharedColors
 import com.example.salsa.util.resources.SharedFonts
 import com.example.salsa.util.resources.SharedValues
@@ -238,7 +238,6 @@ object SearchScreen {
             modifier = modifier,
             content = {
                 val (eyeRef, viewCountRef, userNameRef, diamondRef, diamondCountRef, imageRef) = createRefs()
-                // TODO: use image
                 Box(
                     modifier = Modifier
                         .constrainAs(

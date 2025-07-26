@@ -40,7 +40,7 @@ import coil3.compose.AsyncImage
 import com.example.salsa.R
 import com.example.salsa.models.home.HomeFeed
 import com.example.salsa.ui.sections.MainViewModel
-import com.example.salsa.util.DualThemePreview
+import com.example.salsa.util.annotation.DualThemePreview
 import com.example.salsa.util.resources.SharedColors
 import com.example.salsa.util.resources.SharedFonts
 import com.example.salsa.util.resources.SharedValues.setSizeLimitation
