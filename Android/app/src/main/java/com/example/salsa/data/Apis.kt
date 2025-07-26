@@ -20,23 +20,26 @@ object Apis {
     val userProfileApi: UserProfileApi = retrofit.create(UserProfileApi::class.java)
 }
 
+private const val PATH_TO_RESPONSE =
+    "/Vaishnav-Kanhirathingal/salsa-you-ui-assignment/refs/heads/main/BackEnd/jsonResponse"
+
 interface HomeApi {
-    @GET("/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/jsonResponse/Home.json")
+    @GET("${PATH_TO_RESPONSE}/Home.json")
     suspend fun getPage(): List<HomeFeed>
 }
 
 interface SearchApi {
-    @GET("/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/jsonResponse/search/Search.json")
+    @GET("${PATH_TO_RESPONSE}/search/Search.json")
     suspend fun mainPage(): List<SearchCategory>
 
-    @GET("/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/jsonResponse/search/C{id}.json")
+    @GET("${PATH_TO_RESPONSE}/search/C{id}.json")
     suspend fun categoryPage(@Path("id") id: Int): List<SearchProfile>
 }
 
 interface UserProfileApi {
-    @GET("/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/jsonResponse/profile.json")
+    @GET("${PATH_TO_RESPONSE}/profile.json")
     suspend fun getUserProfile(): UserProfile
 
-    @GET("/Vaishnav-Kanhirathingal/SalsaAssignment/refs/heads/main/BackEnd/jsonResponse/UserPosts.json")
+    @GET("${PATH_TO_RESPONSE}/UserPosts.json")
     suspend fun getUserPosts(): List<String>
 }
