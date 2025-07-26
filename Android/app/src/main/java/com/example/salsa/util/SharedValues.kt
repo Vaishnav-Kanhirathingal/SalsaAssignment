@@ -19,7 +19,7 @@ object SharedValues {
 
     @Composable
     fun Modifier.visibilityGradient(): Modifier {
-        val startPoint =if (isSystemInDarkTheme()) 0x88666666 else 0x88888888
+        val startPoint = if (isSystemInDarkTheme()) 0x88666666 else 0x88888888
         return this.background(
             Brush.verticalGradient(
                 colorStops = arrayOf(

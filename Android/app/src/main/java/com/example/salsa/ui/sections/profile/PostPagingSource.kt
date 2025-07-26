@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.salsa.data.Apis
 
-class PostPagingSource: PagingSource<Int, String>() {
+class PostPagingSource : PagingSource<Int, String>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, String> {
         try {
             val key = params.key ?: 0
