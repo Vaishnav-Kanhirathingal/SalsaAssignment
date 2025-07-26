@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -343,7 +342,7 @@ object ProfileScreen {
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .height(height = SharedValues.minimumTouchSize)
+                                        .setSizeLimitation()
                                         .padding(horizontal = 16.dp)
                                         .clip(shape = RoundedCornerShape(size = 12.dp))
                                         .background(color = SharedColors.PROFILE_CONTAINER.color)
@@ -351,8 +350,7 @@ object ProfileScreen {
                                             width = 1.dp,
                                             color = SharedColors.SURFACE_CONTAINER.color,
                                             shape = RoundedCornerShape(size = 12.dp)
-                                        )
-                                        .padding(vertical = 6.dp),
+                                        ),
                                     horizontalArrangement = Arrangement.Center,
                                     verticalAlignment = Alignment.CenterVertically,
                                     content = {
@@ -368,7 +366,9 @@ object ProfileScreen {
                                         )
                                         Box(
                                             modifier = Modifier
-                                                .fillMaxHeight()
+                                                .setSizeLimitation()
+                                                .clickable(onClick = { TODO() })
+                                                .padding(vertical = 6.dp)
                                                 .clip(shape = RoundedCornerShape(size = 12.dp))
                                                 .background(
                                                     brush = Brush.verticalGradient(
@@ -378,7 +378,6 @@ object ProfileScreen {
                                                         )
                                                     )
                                                 )
-                                                .clickable(onClick = { TODO() })
                                                 .padding(horizontal = 24.dp),
                                             contentAlignment = Alignment.Center,
                                             content = {

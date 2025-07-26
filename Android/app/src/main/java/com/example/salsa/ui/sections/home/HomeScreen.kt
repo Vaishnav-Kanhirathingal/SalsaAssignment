@@ -131,6 +131,8 @@ object HomeScreen {
                 Box(
                     modifier = Modifier
                         .setSizeLimitation()
+                        .clickable(onClick = { TODO() })
+                        .padding(vertical = 6.dp)
                         .clip(shape = RoundedCornerShape(size = 12.dp))
                         .background(
                             brush = Brush.verticalGradient(
@@ -140,7 +142,6 @@ object HomeScreen {
                                 )
                             )
                         )
-                        .clickable(onClick = { TODO() })
                         .padding(horizontal = 24.dp),
                     contentAlignment = Alignment.Center,
                     content = {
