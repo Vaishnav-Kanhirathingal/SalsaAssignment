@@ -31,6 +31,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
@@ -55,7 +57,6 @@ import com.example.salsa.util.resources.SharedColors
 import com.example.salsa.util.resources.SharedFonts
 import com.example.salsa.util.resources.SharedValues
 import com.example.salsa.util.resources.SharedValues.setSizeLimitation
-import com.example.salsa.util.resources.SharedValues.visibilityGradient
 import kotlinx.coroutines.CoroutineScope
 
 object SearchScreen {
@@ -264,7 +265,16 @@ object SearchScreen {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .visibilityGradient()
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        colorStops = arrayOf(
+                                            0.0f to SharedColors.SEARCH_CARD_SHADE.color,
+                                            0.2f to Color.Transparent,
+                                            0.5f to Color.Transparent,
+                                            1.0f to SharedColors.SEARCH_CARD_SHADE.color,
+                                        )
+                                    )
+                                )
                         )
                     }
                 )
@@ -279,7 +289,7 @@ object SearchScreen {
                     ),
                     painter = painterResource(id = R.drawable.eye),
                     contentDescription = null,
-                    tint = SharedColors.ON_SURFACE.color
+                    tint = SharedColors.SEARCH_CARD_TEXT.color
                 )
                 Text(
                     modifier = Modifier.constrainAs(
@@ -293,7 +303,7 @@ object SearchScreen {
                     fontFamily = SharedFonts.roboto,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Medium,
-                    color = SharedColors.ON_SURFACE.color
+                    color = SharedColors.SEARCH_CARD_TEXT.color
                 )
                 Text(
                     modifier = Modifier.constrainAs(
@@ -307,7 +317,7 @@ object SearchScreen {
                     fontFamily = SharedFonts.roboto,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Medium,
-                    color = SharedColors.ON_SURFACE.color
+                    color = SharedColors.SEARCH_CARD_TEXT.color
                 )
                 Image(
                     modifier = Modifier
@@ -336,7 +346,7 @@ object SearchScreen {
                     fontFamily = SharedFonts.roboto,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Medium,
-                    color = SharedColors.ON_SURFACE.color
+                    color = SharedColors.SEARCH_CARD_TEXT.color
                 )
             }
         )

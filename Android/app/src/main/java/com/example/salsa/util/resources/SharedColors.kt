@@ -36,6 +36,22 @@ enum class SharedColors(
     NOTIFICATION_CIRCLE(
         darkColor = 0xFFFEBE24,
         lightColor = 0xFFFEBE24
+    ),
+    HOME_CARD_SHADE(
+        darkColor = 0x80100F0F,
+        lightColor = 0x80100F0F
+    ),
+    HOME_CARD_TEXT(
+        darkColor = 0xFFFCFCFC,
+        lightColor = 0xFFFCFCFC
+    ),
+    SEARCH_CARD_SHADE(
+        darkColor = 0xB2100F0F,
+        lightColor = 0xB2100F0F
+    ),
+    SEARCH_CARD_TEXT(
+        darkColor = 0xFFFCFCFC,
+        lightColor = 0xFFFCFCFC
     );
 
     val color: Color @Composable get() = Color(color = if (isSystemInDarkTheme()) this.darkColor else this.lightColor)

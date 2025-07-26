@@ -83,9 +83,7 @@ object HomeScreen {
     @Composable
     private fun TopBar(modifier: Modifier) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 16.dp),
+            modifier = modifier,
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
             content = {
@@ -192,7 +190,7 @@ object HomeScreen {
                 .padding(all = 1.dp)
                 .background(color = SharedColors.SURFACE_CONTAINER.color),
             content = {
-                val (contentRef, eyeRef, viewCountRef, creatorPhotoRef, creatorNameRef, diamondRef, diamondCountRef) = createRefs()
+                val (contentRef, shadeRef, eyeRef, viewCountRef, creatorPhotoRef, creatorNameRef, diamondRef, diamondCountRef) = createRefs()
 
                 AsyncImage(
                     modifier = Modifier
@@ -213,6 +211,31 @@ object HomeScreen {
                     contentScale = ContentScale.Crop,
                     contentDescription = null
                 )
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .constrainAs(
+                            ref = shadeRef,
+                            constrainBlock = {
+                                this.width = Dimension.fillToConstraints
+                                this.height = Dimension.fillToConstraints
+                                this.top.linkTo(parent.top)
+                                this.bottom.linkTo(parent.bottom)
+                                this.start.linkTo(parent.start)
+                                this.end.linkTo(parent.end)
+                            }
+                        )
+                        .background(
+                            brush = Brush.verticalGradient(
+                                colorStops = arrayOf(
+                                    0.0f to SharedColors.HOME_CARD_SHADE.color,  // top edge
+                                    0.45f to Color.Companion.Transparent,  // fade out
+                                    0.55f to Color.Companion.Transparent,  // fade in
+                                    1.0f to SharedColors.HOME_CARD_SHADE.color   // bottom edge
+                                )
+                            )
+                        )
+                )
                 Icon(
                     modifier = Modifier.constrainAs(
                         ref = eyeRef,
@@ -223,7 +246,7 @@ object HomeScreen {
                     ),
                     painter = painterResource(id = R.drawable.eye),
                     contentDescription = null,
-                    tint = SharedColors.ON_SURFACE.color
+                    tint = SharedColors.HOME_CARD_TEXT.color
                 )
                 Text(
                     modifier = Modifier.constrainAs(
@@ -238,7 +261,7 @@ object HomeScreen {
                     fontSize = 11.sp,
                     fontFamily = SharedFonts.roboto,
                     fontWeight = FontWeight.Medium,
-                    color = SharedColors.ON_SURFACE.color,
+                    color = SharedColors.HOME_CARD_TEXT.color,
                 )
                 AsyncImage(
                     modifier = Modifier
@@ -269,7 +292,7 @@ object HomeScreen {
                     fontSize = 11.sp,
                     fontFamily = SharedFonts.roboto,
                     fontWeight = FontWeight.Medium,
-                    color = SharedColors.ON_SURFACE.color,
+                    color = SharedColors.HOME_CARD_TEXT.color,
                 )
                 Image(
                     modifier = Modifier.constrainAs(
@@ -295,7 +318,7 @@ object HomeScreen {
                     fontSize = 11.sp,
                     fontFamily = SharedFonts.roboto,
                     fontWeight = FontWeight.Medium,
-                    color = SharedColors.ON_SURFACE.color,
+                    color = SharedColors.HOME_CARD_TEXT.color,
                 )
             }
         )
