@@ -386,7 +386,7 @@ object ProfileScreen {
                                                     fontFamily = SharedFonts.roboto,
                                                     fontWeight = FontWeight.Medium,
                                                     fontSize = 12.sp,
-                                                    color = SharedColors.ON_SURFACE.color
+                                                    color = Color(color = 0xFFFCFCFC)
                                                 )
                                             }
                                         )
