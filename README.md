@@ -12,6 +12,19 @@ As discussed, minor UI changes have been made to the app's design
 
 ## Dark Mode Demo (The required version)
 
+![home_dark](https://github.com/user-attachments/assets/925f3d4c-acd0-4f8d-998a-4f42fe5a41d6)
+![search_dark](https://github.com/user-attachments/assets/4361e1fc-840d-49bd-a8c6-4a611f7db46a)
+![profile_dark](https://github.com/user-attachments/assets/90939d88-61ac-4e4a-af9b-e3bedd61de0c)
+![profile_light](https://github.com/user-attachments/assets/27eab72c-0e1e-4dc2-b5d6-904228be8f63)
+![search_light](https://github.com/user-attachments/assets/9fa30ac2-c761-44fb-84d9-b5b975b3a06c)
+![home_light](https://github.com/user-attachments/assets/6a6192d1-808e-48da-a62c-38e2e46843e8)
+
+
+
+
+
+
+
 > 1. `Home` or the `For You` Page
 > 2. `Search` Page
 > 3. `Profile` Page
