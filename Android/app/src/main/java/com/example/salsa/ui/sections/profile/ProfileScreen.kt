@@ -9,12 +9,18 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,6 +31,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,9 +45,10 @@ import com.example.salsa.R
 import com.example.salsa.models.profile.UserProfile
 import com.example.salsa.ui.sections.MainViewModel
 import com.example.salsa.ui.theme.Font
-import com.example.salsa.util.MobilePreview
+import com.example.salsa.util.DualThemePreview
 import com.example.salsa.util.ScreenState
 import com.example.salsa.util.SharedColors
+import com.example.salsa.util.SharedValues
 import com.example.salsa.util.SharedValues.setSizeLimitation
 import kotlinx.coroutines.delay
 
@@ -88,7 +97,7 @@ object ProfileScreen {
         userProfile: UserProfile
     ) {
         Column(
-            modifier = modifier,
+            modifier = modifier.background(color = SharedColors.SURFACE.color),
             content = {
                 Row(
                     modifier = Modifier
@@ -268,9 +277,10 @@ object ProfileScreen {
                                 modifier = Modifier
                                     .weight(weight = 1f)
                                     .setSizeLimitation()
+                                    .clickable(onClick = { TODO() })
+                                    .padding(vertical = 8.dp)
                                     .clip(RoundedCornerShape(size = 8.dp))
-                                    .background(color = SharedColors.SURFACE_CONTAINER.color)
-                                    .clickable(onClick = { TODO() }),
+                                    .background(color = SharedColors.SURFACE_CONTAINER.color),
                                 contentAlignment = Alignment.Center,
                                 content = {
                                     Text(
@@ -287,6 +297,80 @@ object ProfileScreen {
                         CustomCardButton(text = "Share profile")
                     }
                 )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(height = SharedValues.minimumTouchSize)
+                        .padding(horizontal = 16.dp)
+                        .clip(shape = RoundedCornerShape(size = 12.dp))
+                        .background(color = SharedColors.PROFILE_CONTAINER.color)
+                        .border(
+                            width = 1.dp,
+                            color = SharedColors.SURFACE_CONTAINER.color,
+                            shape = RoundedCornerShape(size = 12.dp)
+                        )
+                        .padding(vertical = 6.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                    content = {
+                        Text(
+                            modifier = Modifier
+                                .weight(weight = 1f)
+                                .padding(start = 24.dp),
+                            text = "Earn 💎 500 more to redeem \$15",
+                            fontFamily = Font.roboto,
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 11.sp,
+                            color = SharedColors.ON_SURFACE.color
+                        )
+                        Box(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .clip(shape = RoundedCornerShape(size = 12.dp))
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        colors = listOf(
+                                            Color(color = 0xFFE0331A),
+                                            Color(color = 0xFFE45F0F)
+                                        )
+                                    )
+                                )
+                                .padding(horizontal = 24.dp),
+                            contentAlignment = Alignment.Center,
+                            content = {
+                                Text(
+                                    text = "GO LIVE",
+                                    fontFamily = Font.roboto,
+                                    fontWeight = FontWeight.Medium,
+                                    fontSize = 12.sp,
+                                    color = SharedColors.ON_SURFACE.color
+                                )
+                            }
+                        )
+                        Spacer(modifier = Modifier.width(width = 8.dp))
+                        Box(
+                            modifier = Modifier
+                                .size(size = SharedValues.minimumTouchSize)
+                                .clip(shape = CircleShape)
+                                .clickable(onClick = { TODO() }),
+                            contentAlignment = Alignment.Center,
+                            content = {
+                                Icon(
+                                    modifier = Modifier
+                                        .size(size = 24.dp)
+                                        .background(
+                                            color = SharedColors.ON_SURFACE_CONTAINER.color,
+                                            shape = CircleShape
+                                        )
+                                        .padding(all = 6.dp),
+                                    imageVector = Icons.Default.Close,
+                                    contentDescription = null,
+                                    tint = SharedColors.SURFACE.color
+                                )
+                            }
+                        )
+                    }
+                )
             }
         )
     }
@@ -294,7 +378,7 @@ object ProfileScreen {
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
-@MobilePreview
+@DualThemePreview
 private fun ProfileScreenPrev() {
     ProfileScreen.Content(
         modifier = Modifier.fillMaxSize(),
