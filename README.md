@@ -29,3 +29,18 @@ As discussed, minor UI changes have been made to the app's design
 > 1. `Home` or the `For You` Page
 > 2. `Search` Page
 > 3. `Profile` Page
+
+## Project setup and module structure
+
+Project setup is as normal, file structure -
+
+- data (has api service file)
+- model (has data models of the responses with serialization added)
+- ui (has UI and related files)
+    - sections (home, search and profile screen files along with paging sources and a single viewmodel to use data caching)
+    - theme (the default folder created as usual)
+- util (utilities)
+    - annotations (has custom preview annotation)
+    - resources (has different files for colors, fonts and values that are shared)
+    - ScreenState (sealed class for screen state monitoring)
+- MainActivity
